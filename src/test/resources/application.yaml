@@ -7,7 +7,6 @@ spring:
       mongodb:
         port: 27017
         database: userdb
-
 de:
   flapdoodle:
     mongodb:
