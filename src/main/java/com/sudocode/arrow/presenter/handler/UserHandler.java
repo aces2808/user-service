@@ -23,4 +23,7 @@ public class UserHandler {
         return userPort.save(serverRequest.bodyToMono(User.class));
     }
 
+    public Mono<ServerResponse> get(ServerRequest serverRequest) {
+        return userPort.get(serverRequest.pathVariable("id"));
+    }
 }

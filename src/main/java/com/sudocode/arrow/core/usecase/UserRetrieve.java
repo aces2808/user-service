@@ -6,5 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface UserRetrieve {
 
-    <U extends Mono<User>> Mono<ServerResponse> get(U u);
+    Mono<ServerResponse> get(String id);
 }

@@ -13,14 +13,10 @@ import java.util.Optional;
 
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
+//TODO Refactor this to use a service layer for business logic
 @Slf4j
-public class UserPort implements UserCreate {
+public record UserPort(UserRepository userRepository) implements UserCreate, UserRetrieve {
 
-    private final UserRepository userRepository;
-
-    public UserPort(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public <U extends Mono<User>> Mono<ServerResponse> save(U u) {
@@ -33,4 +29,13 @@ public class UserPort implements UserCreate {
         });
     }
 
+    @Override
+    public Mono<ServerResponse> get(String id) {
+        return Mono.just(id).flatMap(
+                userId -> {
+                    log.info("Get User Data :: {}", userRepository.findUserById(userId).toString());
+                    return ok().contentType(MediaType.APPLICATION_JSON).body(Mono.justOrEmpty(userRepository.findUserById(userId)), User.class);
+                }
+        );
+    }
 }
