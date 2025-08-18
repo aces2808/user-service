@@ -1,15 +1,14 @@
 spring:
+  data:
+    mongodb:
+      username: admin
+      password: password
+      authentication-database: admin
+      host: localhost
+      port: 27017
+      database: mcpdb
   application:
     name: user-service
   webflux:
     base-path: api
-    data:
-      mongodb:
-        port: 27017
-        database: userdb
 
-de:
-  flapdoodle:
-    mongodb:
-      embedded:
-        version: "5.0.5"

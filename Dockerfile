@@ -21,6 +21,6 @@ COPY --from=builder-base ${DEPENDENCY}/BOOT-INF/classes /app
 RUN rm -rf bin
 
 ENV PORT 8080
-EXPOSE 8080
+EXPOSE 8082
 
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.sudocode.arrow.Application"]
